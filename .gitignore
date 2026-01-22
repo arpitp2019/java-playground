@@ -1,6 +1,4 @@
-/gamedemo
-/musicProject
-/ *.class
-**/gamedemo/
-**/musicProject/
-"*.class" 
+# Open .gitignore in a text editor and replace with:
+gamedemo/
+musicProject/
+*.class
