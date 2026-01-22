@@ -1,0 +1,63 @@
+Great question! The method is `private static` for specific reasons:
+
+## Why `private`?
+
+**Encapsulation and hiding implementation details:**
+
+```java
+private static int getDefaultRam(String brand){
+    // This is an internal helper method
+}
+```
+
+- It's only used **inside the `Laptop` class** by the constructors
+- Other classes don't need to know how default RAM is determined
+- Prevents external code from calling it directly
+- Follows the principle: "Hide what users don't need to see"
+
+## If it was `public`:
+
+```java
+// BAD - Anyone could call it
+public static int getDefaultRam(String brand){...}
+
+// From another class:
+int ram = Laptop.getDefaultRam("Lenovo");  // Why would external code need this?
+```
+
+## Why `static`?
+
+```java
+private static int getDefaultRam(String brand)
+```
+
+- **`static`** means it doesn't need an object to work
+- Can be called during object construction (before `this` exists)
+- Useful in constructor chaining with `this()`
+
+```java
+public Laptop(String brandname, String modelName, double priceINR){
+    this(brandname, modelName, getDefaultRam(brandname), priceINR);
+    // ↑ Called before object is fully created, so must be static
+}
+```
+
+## Summary
+
+| Modifier | Reason |
+|----------|--------|
+| `private` | Keep it internal to the class - implementation detail |
+| `static` | Allow use in constructors before object creation |
+
+## When to make it `public`?
+
+Only if you want **other classes** to use it:
+
+```java
+public static int getDefaultRam(String brand){...}
+
+// From another class:
+int defaultRam = Laptop.getDefaultRam("Dell");
+```
+
+But in this case, it's just a helper for constructors, so `private` is better!
