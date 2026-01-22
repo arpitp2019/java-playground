@@ -3,5 +3,4 @@
 / *.class
 **/gamedemo/
 **/musicProject/
-**/*.class
 "*.class" 
