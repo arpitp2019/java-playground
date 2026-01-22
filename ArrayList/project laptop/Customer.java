@@ -80,9 +80,11 @@ public class Customer {
     }
 
 
-    public void purchaseLaptop(Laptop laptop){
-        this.purchasedLaptop = laptop;  
+    public Laptop myLapTop(){
+        return this.purchasedLaptop;  
     }
+
+
 
     public boolean isAdult(){
         return this.age >= 18;
@@ -109,12 +111,7 @@ public class Customer {
         }
     }
 
-   public String upgradeLaptopRam(int additionalRam){
-    if (this.purchasedLaptop == null){
-        return "No laptop to upgrade, please purchase a laptop first.";
-    }
-    return this.purchasedLaptop.upgradeTheLaptopRam(additionalRam);  // ✅ Returns result
-}
+   
 
 
     public void addPhoneNumber(String phoneNumber){

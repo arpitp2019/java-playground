@@ -73,6 +73,8 @@ public class Laptop{
         return this.price;
     }
 
+    
+
     public String toString(){
         return "Brand: " + this.brand + ", Model: " + this.model + ", RAM: " + this.ramSize + "GB, Price: ₹" + this.price;
     }
@@ -111,6 +113,10 @@ public class Laptop{
     } else {
         return "Upgrade failed, additional RAM size must be greater than current RAM size of " + this.ramSize + "GB";   
     }
+    }
+
 }
 
-}   
+
+
+ 
