@@ -8,6 +8,7 @@ public class Customer {
     private boolean isMarried;
     private boolean isAdult;
     private Laptop purchasedLaptop;
+    private ArrayList<Laptop> laptopCollection;
 
     // Main constructor with defensive copy
     public Customer(String name, int age, String email, ArrayList<String> phoneNumbers, 
@@ -19,6 +20,7 @@ public class Customer {
         this.isMarried = isMarried;
         this.isAdult = isAdult;
         this.purchasedLaptop = laptopName;
+        this.laptopCollection = new ArrayList<>(laptopCollection);  // ✅ Defensive copy
     }
 
     // Constructor with single phone number (for your Main.java)
@@ -32,6 +34,7 @@ public class Customer {
         this.isMarried = isMarried;
         this.isAdult = isAdult;
         this.purchasedLaptop = laptopName;
+        this.laptopCollection = new ArrayList<>(laptopCollection); 
     }
 
     // Constructor without phone numbers and laptop
@@ -72,16 +75,14 @@ public class Customer {
 */
 
 
-    public String getRamSize(){
-        if (this.purchasedLaptop == null){
-            return "No laptop purchased";
-        }
-        return this.purchasedLaptop.getRamSize() + "GB";
-    }
 
 
     public Laptop myLapTop(){
         return this.purchasedLaptop;  
+    }
+
+    public ArrayList<Laptop> myLaptopCollection(){
+        return new ArrayList <>(this.laptopCollection);
     }
 
 

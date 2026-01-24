@@ -73,8 +73,6 @@ public class Laptop{
         return this.price;
     }
 
-
-
     public String toString(){
         return "Brand: " + this.brand + ", Model: " + this.model + ", RAM: " + this.ramSize + "GB, Price: " + this.price;
     }
