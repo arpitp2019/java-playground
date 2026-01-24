@@ -73,10 +73,10 @@ public class Laptop{
         return this.price;
     }
 
-    
+
 
     public String toString(){
-        return "Brand: " + this.brand + ", Model: " + this.model + ", RAM: " + this.ramSize + "GB, Price: ₹" + this.price;
+        return "Brand: " + this.brand + ", Model: " + this.model + ", RAM: " + this.ramSize + "GB, Price: " + this.price;
     }
 
     // Fixed: Changed name from estimatedPriceAfterRepair to estimatePriceAfterRepair
@@ -99,13 +99,13 @@ public class Laptop{
     if (this.ramSize < additionalRamSize){
         // Calculate upgrade cost
         int ramIncrease = additionalRamSize - this.ramSize;
-        double upgradeCost = ramIncrease * 2000.0;  // ₹2000 per GB
+        double upgradeCost = ramIncrease * 2000.0;  // 2000 per GB
         
         // Update laptop
         this.ramSize = additionalRamSize;
         this.price = this.price + upgradeCost;
         
-        return "RAM upgraded to " + this.ramSize + "GB. New price: ₹" + this.price;
+        return "RAM upgraded to " + this.ramSize + "GB. New price: " + this.price;
         
     } else if (this.ramSize == additionalRamSize){
         return "No upgrade needed, RAM size is already " + this.ramSize + "GB";   
@@ -113,6 +113,18 @@ public class Laptop{
     } else {
         return "Upgrade failed, additional RAM size must be greater than current RAM size of " + this.ramSize + "GB";   
     }
+    }
+
+    public String isLaptopResellableToString(){
+        if (this.price <= 110000.0){
+            return "Laptop is resellable (estimated price: " + this.price + ")";
+        } else {
+            return "Laptop not resellable (too expensive: " + this.price + ")";
+        }
+    }
+
+    public boolean isLaptopResellable(){
+    return this.price <= 110000.0;  // ✅ No if-else needed at al
     }
 
 }

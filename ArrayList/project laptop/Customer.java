@@ -85,7 +85,6 @@ public class Customer {
     }
 
 
-
     public boolean isAdult(){
         return this.age >= 18;
     }
@@ -98,21 +97,6 @@ public class Customer {
         this.age = age;
         this.isAdult = (age >= 18);
     }
-
-    public String isLaptopResellable(double repairCost){
-        if (this.purchasedLaptop == null){
-            return "No laptop to resell";
-        }
-        double estimatedPrice = this.purchasedLaptop.estimatePriceAfterRepair(repairCost);
-        if (estimatedPrice <= 110000.0){
-            return "Laptop is resellable (estimated price: ₹" + estimatedPrice + ")";
-        } else {
-            return "Laptop not resellable (too expensive: ₹" + estimatedPrice + ")";
-        }
-    }
-
-   
-
 
     public void addPhoneNumber(String phoneNumber){
         if (phoneNumber == null || phoneNumber.length() != 10){

@@ -6,8 +6,14 @@ public class Main{
 
         customer1.addPhoneNumber("9981098942");
         System.out.println(customer1.myLapTop().upgradeTheLaptopRam(3));
-        System.out.println(customer1.myLapTop().getPrice());
-        
+        System.out.println(customer1.myLapTop().toString());
+        System.out.println(customer1.myLapTop().isLaptopResellableToString());
+        customer1.myLapTop().repairLaptop(20000);
+        System.out.println(customer1.myLapTop().isLaptopResellableToString());
+        customer1.myLapTop().repairLaptop(40000.0);
+        System.out.println(customer1.myLapTop().isLaptopResellableToString());
+        customer1.myLapTop().repairLaptop(40000.0);
+        System.out.println(customer1.myLapTop().isLaptopResellableToString());
     }
 
 }
