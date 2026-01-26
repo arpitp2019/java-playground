@@ -15,7 +15,6 @@ public class Main{
         customer1.myLapTop().repairLaptop(40000.0);
         System.out.println(customer1.myLapTop().isLaptopResellableToString());
     }
-
 }
 
 
