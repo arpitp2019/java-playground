@@ -7,7 +7,6 @@ public class Store {
     private ArrayList<Laptop> availableLaptops;
     private ArrayList<String> transactions;
     private ArrayList<Double> soldLaptopAmountList;
-    
     public Store(String storeName, String storeLocation){
         this.storeName = storeName;
         this.storeLocation = storeLocation;
