@@ -12,7 +12,7 @@ public class Laptop{
     }
 
     public Laptop(String brandname, String modelName, double priceINR){
-        this(brandname, modelName, getDefaultRamSize(brandname), priceINR)
+        this(brandname, modelName, getDefaultRamSize(brandname), priceINR);
     }
 
     public Laptop(String brandname){
