@@ -1,133 +1,140 @@
 import java.util.ArrayList;
+import java.time.LocalDate;
 
-public class Customer {
-    private String name;
-    private int age;
-    private String email;
-    private ArrayList<String> phoneNumbers;
-    private boolean isMarried;
-    private boolean isAdult;
-    private Laptop purchasedLaptop;
+public abstract class Customer2 {
+    private String customerID;
+    private String customerName;
+    private String customerEmail;
+    private String customerPhoneNumber;
+    private LocalDate registerationDate;
+    private double totalSpentAmount;
     private ArrayList<Laptop> laptopCollection;
+    protected static int totalCustomerCount = 0;
+    protected static final String companyName = "TechStore India";
+    protected static final int baseDiscountThreshold = 50000;
+    protected static final String country = "India";
 
-    // Main constructor with defensive copy
-    public Customer(String name, int age, String email, ArrayList<String> phoneNumbers, 
-                    boolean isMarried, boolean isAdult, Laptop laptopName){
-        this.name = name;
-        this.age = age;
-        this.email = email;
-        this.phoneNumbers = new ArrayList<>(phoneNumbers);  // ✅ Defensive copy
-        this.isMarried = isMarried;
-        this.isAdult = isAdult;
-        this.purchasedLaptop = laptopName;
-        this.laptopCollection = new ArrayList<>(laptopCollection);  // ✅ Defensive copy
+    public Customer2(String customerID,String customerName, String customerEmail, String cutomerPhoneNumber, LocalDate registerationDate, double totalSpentAmount, ArrayList<Laptop> laptopCollection){
+        this.customerID = customerID;
+        this.customerName = customerName;
+        this.customerEmail = customerEmail;
+        this.customerPhoneNumber = cutomerPhoneNumber;
+        this.registerationDate = LocalDate.now();
+        this.totalSpentAmount = totalSpentAmount;
+        this.laptopCollection = new ArrayList<>(laptopCollection); // Defensive copy
+        totalCustomerCount++;
     }
 
-    // Constructor with single phone number (for your Main.java)
-    public Customer(String name, int age, String email, String phoneNumber, 
-                    boolean isMarried, boolean isAdult, Laptop laptopName){
-        this.name = name;
-        this.age = age;
-        this.email = email;
-        this.phoneNumbers = new ArrayList<>();
-        this.phoneNumbers.add(phoneNumber);  // Add single phone
-        this.isMarried = isMarried;
-        this.isAdult = isAdult;
-        this.purchasedLaptop = laptopName;
-        this.laptopCollection = new ArrayList<>(laptopCollection); 
+    private String generateCustomerCode(){
+        return "Cust -" + this.customerID + "-" + System.currentTimeMillis();
     }
 
-    // Constructor without phone numbers and laptop
-    public Customer(String name, int age, String email, boolean isMarried, boolean isAdult){
-        this(name, age, email, new ArrayList<>(), isMarried, isAdult, null);
+    public String customerInfo(){
+        return "customerID:" + this.customerID + ", customerName: " + this.customerName + ", customerEmail: " + this.customerEmail + ", registerationDate: " + this.registerationDate + ", totalSpentAmount: " + this.totalSpentAmount + ", laptopCollection: " + this.laptopCollection.toString();
     }
 
-    // Constructor with just name and email
-    public Customer(String name, int age, String email){
-        this(name, age, email, new ArrayList<>(), false, true, null);
+    protected void addPurchase(Laptop laptop){
+        this.laptopCollection.add(laptop);
+        this.totalSpentAmount += laptop.getPrice();
+        System.out.println("Laptop " + laptop.getBrandName() + " added to " + this.customerName + "'s collection.");
     }
 
-    public String getName() {
-        return name;
+    protected ArrayList<Laptop> getLaptopCollection(){
+        return new ArrayList<>(this.laptopCollection);
     }
 
-    public String getEmail() {
-        return email;
+    //----------------------------Setting getter methods-----------------------------------------
+
+    public final String getCustomerID(){
+        return this.customerID;
     }
 
-    // Returns a copy to protect internal list
-    public ArrayList<String> getPhoneNumbers() {
-        return new ArrayList<>(this.phoneNumbers);  // ✅ Return copy
+    public final String getCompanyName(){
+        return companyName;
     }
 
-    public boolean getIsMarried(){
-        return isMarried;
+    public final String getCountry(){
+        return country;
     }
 
-    public boolean getIsAdult(){
-        return isAdult;
+    public String getCustomerName(){
+        return this.customerName;
     }
 
-    /*  This method is not necessary as per encapsulation best practices
-    public Laptop getPurchasedLaptop(){
-        return purchasedLaptop;
-    }
-*/
-
-
-
-
-    public Laptop myLapTop(){
-        return this.purchasedLaptop;  
+    public String getCustomerEmail(){
+        return this.customerEmail;
     }
 
-    public ArrayList<Laptop> myLaptopCollection(){
-        return new ArrayList <>(this.laptopCollection);
+    public String getCustomerPhoneNumber(){
+        return this.customerPhoneNumber;
+    }
+
+    public double getTotalSpent(){
+        return this.totalSpentAmount;
     }
 
 
-    public boolean isAdult(){
-        return this.age >= 18;
+    public int getLaptopPurchased(){
+        return this.laptopCollection.size();
     }
 
-    public int getAge(){
-        return age;
+
+    //----------------------------Setting Setter methods-----------------------------------------
+    public void setCustomerEmail(String customerEmail){
+        this.customerEmail = customerEmail;
+        System.out.println("New email of customer " + this.customerName + "is updated");
     }
 
-    public void setAge(int age){
-        this.age = age;
-        this.isAdult = (age >= 18);
-    }
-
-    public void addPhoneNumber(String phoneNumber){
-        if (phoneNumber == null || phoneNumber.length() != 10){
+    public void setPhoneNumber(String phoneNumber) {
+        if (phoneNumber != null && phoneNumber.length() == 10) {
+            this.customerPhoneNumber = phoneNumber;
+            System.out.println("Phone number updated for customer: " + this.customerName);
+        } else {
             System.out.println("Invalid phone number. Must be 10 digits.");
-            return;
         }
-        
-        char firstChar = phoneNumber.charAt(0);
-        if (firstChar < '6' || firstChar > '9'){
-            System.out.println("Invalid phone number, must start with digits 6-9");
-            return;
-        }
-        
-        if (this.phoneNumbers.contains(phoneNumber)){
-            System.out.println("Phone number already exists");
-            return;
-        }
-        
-        this.phoneNumbers.add(phoneNumber);
     }
 
-    public ArrayList<String> getAllPhoneNumbers(){
-    return new ArrayList<>(this.phoneNumbers);  // ✅ Returns a copy
-}
+    //--------------------------- Static methods -------------------------------------------
+    public static int getCustomerCount(){
+        return totalCustomerCount;
+    }
 
+    public static double getBaseDiscountThreshold(){
+        return baseDiscountThreshold;
+    }
+
+    public abstract String getCustomerType();
+
+    public abstract double calculateDiscount(double amount);
+
+    public abstract String getShippingPolicy();
+
+    public abstract int getPurchaseLimit();
+
+    public abstract String getPriorityLevel();
+
+    public void displayCustomerInfo() {
+        System.out.println("\n========== Customer Information ==========");
+        System.out.println("Type: " + getCustomerType());
+        System.out.println("Name: " + customerName);
+        System.out.println("ID: " + customerID);
+        System.out.println("Email: " + customerEmail);
+        System.out.println("Phone: " + customerPhoneNumber);
+        System.out.println("Registration Date: " + registerationDate);
+        System.out.println("Total Spent: Rs." + totalSpentAmount);
+        System.out.println("Laptops Purchased: " + laptopCollection.size());
+        System.out.println("Priority Level: " + getPriorityLevel());
+        System.out.println("Shipping Policy: " + getShippingPolicy());
+        System.out.println("Company: " + companyName);
+        System.out.println("Country: " + country);
+        System.out.println("==========================================\n");
+    }
 
     @Override
-    public String toString(){
-        return "Customer: " + this.name + " (" + this.age + " years), Email: " + this.email + 
-               ", Phones: " + this.getAllPhoneNumbers() + ", Laptop: " + 
-               (this.purchasedLaptop != null ? this.purchasedLaptop.getBrandName() : "None");
+    public String toString() {
+        return getCustomerType() + " - " + this.customerName + " (ID: " + this.customerEmail + 
+               ", Spent: Rs." + this.totalSpentAmount + ")";
     }
 }
+
+
