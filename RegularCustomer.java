@@ -16,6 +16,8 @@ public class RegularCustomer extends Customer implements Purchaser {
     private static final int DEFAULT_PURCHASE_LIMIT = 2;
     private static final double REGULAR_DISCOUNT_RATE = 0.05;  // 5%
     private static final double SHIPPING_CHARGE = 200.0;
+    private static final PriorityLevel myPriorityLevel = PriorityLevel.STANDERD;
+    private static final CustomerType thisCustomerType = CustomerType.REGULAR;
     
     
     // ========== CONSTRUCTORS ========== ✅
@@ -60,7 +62,7 @@ public class RegularCustomer extends Customer implements Purchaser {
      */
     @Override
     public String getCustomerType() {
-        return "Regular Customer";
+        return thisCustomerType.toString();
     }
     
     /**
@@ -80,5 +82,36 @@ public class RegularCustomer extends Customer implements Purchaser {
         System.out.println("Purchase amount below threshold. No discount.");
         return 0.0;
     }
+
+    @Override
+    public String getShippingPolicy(){
+        return "Standard shipping within 3-5 business days" + " with shipping amount" + SHIPPING_CHARGE;
+    }
+
+    @Override
+    public String getPriorityLevel(){
+        return myPriorityLevel.toString();
+    }
+
+    @Override
+    public String getPurchaseLimit(){
+        return this.purchaseLimit;
+    }
+
+// ========== IMPLEMENTING INTERFACE METHODS FROM PURCHASER ========== ✅
+    @Override
+    public double calculateTotalPurchase(Customer customer){
+        if (customer.getLaptopCollection.isEmpty()){
+            return 0.00
+        }else{
+            double totalAmount = 0;
+            for (Laptop laptop : customer.getLaptopCollection()){
+                totalAmount += laptop.getPrice();
+            }
+            return totalAmount;
+        }
+    }
+
+    
 }
     

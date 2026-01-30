@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.time.LocalDate;
 
-public abstract class Customer2 {
+public abstract class Customer {
     private String customerID;
     private String customerName;
     private String customerEmail;
@@ -9,19 +9,20 @@ public abstract class Customer2 {
     private LocalDate registerationDate;
     private double totalSpentAmount;
     private ArrayList<Laptop> laptopCollection;
+
     protected static int totalCustomerCount = 0;
     protected static final String companyName = "TechStore India";
     protected static final int baseDiscountThreshold = 50000;
     protected static final String country = "India";
 
-    public Customer2(String customerID,String customerName, String customerEmail, String cutomerPhoneNumber, LocalDate registerationDate, double totalSpentAmount, ArrayList<Laptop> laptopCollection){
+    public Customer(String customerID,String customerName, String customerEmail, String cutomerPhoneNumber, LocalDate registerationDate, double totalSpentAmount){
         this.customerID = customerID;
         this.customerName = customerName;
         this.customerEmail = customerEmail;
         this.customerPhoneNumber = cutomerPhoneNumber;
         this.registerationDate = LocalDate.now();
         this.totalSpentAmount = totalSpentAmount;
-        this.laptopCollection = new ArrayList<>(laptopCollection); // Defensive copy
+        this.laptopCollection = new ArrayList<>();
         totalCustomerCount++;
     }
 
@@ -76,6 +77,16 @@ public abstract class Customer2 {
 
     public int getLaptopPurchased(){
         return this.laptopCollection.size();
+    }
+
+    public enum PriorityLevel{
+        STANDERD,
+        PREMIUM
+    }
+
+    public enum CustomerType{
+        REGULAR,
+        PREMIUM
     }
 
 
