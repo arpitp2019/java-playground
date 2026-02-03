@@ -8,7 +8,7 @@ public abstract class Customer2 {
     private String customerPhoneNumber;
     private LocalDate registerationDate;
     private double totalSpentAmount;
-    private ArrayList<Laptop> laptopCollection;
+    protected ArrayList<Laptop> laptopCollection;
     protected static int totalCustomerCount = 0;
     protected static final String companyName = "TechStore India";
     protected static final int baseDiscountThreshold = 50000;
