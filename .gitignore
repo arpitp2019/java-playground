@@ -1,4 +1,14 @@
-# Open .gitignore in a text editor and replace with:
+# Compiled Java files
+*.class
+
+# Project directories
 gamedemo/
 musicProject/
-*.class
+
+# Java kernel installation files
+install_ijava.bat
+run_ijava_install.py
+JAVA_KERNEL_SETUP_COMPLETE.md
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
