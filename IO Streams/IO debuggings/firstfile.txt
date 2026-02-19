@@ -1,0 +1,2 @@
+Hello, this is content from firstfile.txt.
+It has multiple bytes to read.

@@ -1,10 +1,11 @@
 import java.io.FileInputStream;
 
-public class BuggyStream1 {
+public class DebugBuggyStream1 {
     public static void main(String[] args) {
         try {
             System.out.println("> Opening stream...");
-            FileInputStream fis = new FileInputStream("firstfile.txt");
+            // Adjusted path to look into the subfolder for the file relative to root
+            FileInputStream fis = new FileInputStream("IO Streams/IO debuggings/firstfile.txt");
 
             System.out.println("> Reading first byte...");
             int data = fis.read();
