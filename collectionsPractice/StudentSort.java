@@ -20,7 +20,6 @@ public class StudentSort {
 
         students.removeIf(s -> s.getMarks() < 40);
         System.out.println("List after removing failed students: " + students);
-
     }
 }
 
@@ -46,3 +45,5 @@ class Student {
         return "Student{name='" + name + "', marks=" + marks + "}";
     }
 }
+
+
